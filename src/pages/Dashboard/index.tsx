@@ -31,6 +31,13 @@ const Dashboard: React.FC = () => {
     return [];
   });
 
+  useEffect(() => {
+    localStorage.setItem(
+      '@GithubExplorer:repositories',
+      JSON.stringify(repositories),
+    );
+  }, [repositories]);
+
   async function handleAddRepository(
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> {
@@ -73,7 +80,7 @@ const Dashboard: React.FC = () => {
         {repositories.map((repository) => (
           <Link
             key={repository.full_name}
-            to={`/repository/${repository.full_name}`}
+            to={`/repositories/${repository.full_name}`}
           >
             <img
               src={repository.owner.avatar_url}
